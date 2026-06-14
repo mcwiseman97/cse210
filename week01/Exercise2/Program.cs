@@ -32,6 +32,7 @@ class Program
             grade = "F" ;
         }
 
+// Add a fix to acount for there being no A+ F+ or F-
         endNumber = percent % 10;
         if (endNumber >= 7)
         {
