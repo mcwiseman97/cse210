@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-
+        // Random number creation and variable placeholders
         Random magicNumber = new Random();
         int number = magicNumber.Next(1, 100);
         string guess = "";
@@ -16,7 +16,6 @@ class Program
         do
         {
             Console.WriteLine($"The magic number is: {number}");
-
             Console.Write("What is your guess? ");
             guess = Console.ReadLine();
 
@@ -24,6 +23,7 @@ class Program
 
             if (guessedNumber == number)
             {
+                // End message and request for restart
                 Console.WriteLine("You guessed it!");
                 Console.WriteLine($"Number of guesses: {i}");
                 Console.WriteLine("");
@@ -39,11 +39,14 @@ class Program
                 {
                     if (answer == "yes")
                     {
+                        //replaces first random number with new one
+                        //Continue make the program move forward
                         number = magicNumber.Next(1, 100);
                         continue;
                     }
                     else if (answer == "no")
                     {
+                        // Return makes the program exit loop (Exits program in this case.)
                         return;
                     }
                 }
@@ -51,6 +54,7 @@ class Program
             }
             else
             {
+                // Higher or Lower indicators
                 if (guessedNumber > number)
                 {
                     Console.WriteLine("Lower");
@@ -60,6 +64,7 @@ class Program
                     Console.WriteLine("Higher");
                 }
             }
+            // Counts how many times you guess
             i++;
             
         }while (status == true);
