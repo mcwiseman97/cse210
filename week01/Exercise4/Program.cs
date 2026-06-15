@@ -55,7 +55,7 @@ class Program
         Console.WriteLine($"The largest number is: {highestNumber}");
         Console.WriteLine($"The smallest number is: {smallestNumber}");
         numbers.Sort();
-        Console.WriteLine("The sorted list is:")
+        Console.WriteLine("The sorted list is:");
 
         // Display list in sorted order
         foreach (int number in numbers)
