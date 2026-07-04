@@ -34,8 +34,7 @@ class Program
         {
             grade = "F" ;
         }
-
-// Added a fix to acount for there being no A+ F+ or F-
+        
         endNumber = percent % 10;
         if (grade != "F")
         {
