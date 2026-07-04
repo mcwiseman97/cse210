@@ -37,23 +37,15 @@ class Program
 
 // Added a fix to acount for there being no A+ F+ or F-
         endNumber = percent % 10;
-        if (percent > 96 || percent < 60)
+        if (grade != "F")
         {
-            sign = "";
-        }
-        else
-        {
-            if (endNumber >= 7)
+            if (endNumber >= 7 && grade != "A")
             {
                 sign = "+";
             }
             else if (endNumber <= 3)
             {
                 sign = "-";
-            }
-            else
-            {
-                sign = "";
             }
         }
 
