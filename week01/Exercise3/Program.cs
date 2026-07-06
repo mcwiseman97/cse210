@@ -15,7 +15,6 @@ class Program
         bool status = true;
         do
         {
-            Console.WriteLine($"The magic number is: {number}");
             Console.Write("What is your guess? ");
             guess = Console.ReadLine();
 
