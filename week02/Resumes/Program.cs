@@ -4,10 +4,14 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Resumes Project.");
         Job job1 = new Job();
-        job1._jobTitle = "Team Lead";
 
-        Console.WriteLine($"{job1._jobTitle}");
+        job1._company = "Conservice";
+        job1._jobTitle = "Team Lead";
+        job1._startYear = 2022;
+        job1._endYear = 2026;
+
+        job1.Display();
+
     }
 }
