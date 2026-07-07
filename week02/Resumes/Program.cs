@@ -16,14 +16,9 @@ class Program
         job2._startYear = 2021;
         job2._endYear = 2022;
 
-
-        
-
         job1.Display();
 
         Resume myResume = new Resume();
         myResume._name = "Michael Wiseman";
-
-
     }
 }
