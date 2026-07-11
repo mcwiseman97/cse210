@@ -2,6 +2,14 @@ using System;
 using System.Runtime.InteropServices.Marshalling;
 using System.Threading.Tasks.Dataflow;
 
+/*
+ * Exceeding Requirements:
+ * 1. Each entry also stores a mood rating (1-5) so the journal captures how the
+ *    writer felt that day, which helps when people feel they have "nothing to say."
+ * 2. PromptGenerator avoids repeating the same prompt twice in a row.
+ * 3. The menu includes a search option so users can find past entries by keyword.
+ */
+
 class Program
 {
     static void Main(string[] args)
