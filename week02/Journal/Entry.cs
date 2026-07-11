@@ -18,10 +18,18 @@ public class Entry
 
     public Entry(string date, string promptText, string entryText, string mood)
     {
+         _date = date;
+        _promptText = promptText;
+        _entryText = entryText;
+        _mood = mood;           
+    }
+
+    public void Display()
+    {
         Console.WriteLine($"Date: {_date} - Prompt: {_promptText}");
         Console.WriteLine($"Mood: {_mood}");
         Console.WriteLine(_entryText);
-        Console.WriteLine();
+        Console.WriteLine();        
     }
 
     public string GetSaveString()
