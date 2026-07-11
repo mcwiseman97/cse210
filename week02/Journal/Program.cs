@@ -74,17 +74,54 @@ class Program
 
     static void SaveJournal(Journal journal)
     {
-        
+        Console.Write("What is the filename? ");
+        string filename = Console.ReadLine();
+
+        journal.SaveToFile(filename);
+        Console.WriteLine("Journal saved.");
+        Console.WriteLine();
     }
 
     static void LoadJournal(Journal journal)
     {
-        
+        Console.Write("WHat is the file name? ");
+        string filename = Console.ReadLine();
+
+        if (!System.IO.File.Exists(filename))
+        {
+            Console.WriteLine("File could not be found.");
+            Console.WriteLine();
+            return;
+        }
+
+        journal.LoadFromFile(filename);
+        Console.WriteLine("Journal loaded.");
+        Console.WriteLine();
+
     }
 
     static void SearchJournal(Journal journal)
     {
+        Console.Write("Enter a keyword to search for: ");
+        string keyword = Console.ReadLine();
+        Console.WriteLine();
         
+        bool found = false;
+
+        foreach(Entry entry in journal._entries)
+        {
+            if (entry._promptText.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
+                entry._entryText.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
+                entry._mood.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
+                entry._date.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+            {
+             entry.Display();
+             found = true;   
+            }
+        }
+
+        Console.WriteLine("No matching entries found.");
+        Console.WriteLine();
     }
 
 }
