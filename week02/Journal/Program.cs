@@ -13,13 +13,13 @@ class Program
         
         while (choice != "6")
         {
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
+            Console.WriteLine("1. Write");
+            Console.WriteLine("2. Display");
+            Console.WriteLine("3. Load");
+            Console.WriteLine("4. Save");
+            Console.WriteLine("5. Search");
+            Console.WriteLine("6. Quit");
+            Console.WriteLine("WHat would you like to do? ");
             Console.Write("");
             choice = Console.ReadLine();
             Console.WriteLine();
