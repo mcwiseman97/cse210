@@ -34,7 +34,7 @@ public class Entry
 
     public string GetSaveString()
     {
-        return $"{_date}|{_promptText}|{_mood}|{_entryText}"
+        return $"{_date}|{_promptText}|{_mood}|{_entryText}";
     }
     public static Entry CreateFromSaveString(string line)
     {
