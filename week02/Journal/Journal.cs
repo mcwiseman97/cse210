@@ -11,6 +11,11 @@ public class Journal
         _entries = new List<Entry>();
     }
 
+    public void addEntry(Entry newEntry)
+    {
+        _entries.Add(newEntry);
+    }
+
     public void DisplayAll()
     {
         if (_entries.Count == 0)

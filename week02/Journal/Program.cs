@@ -58,7 +58,18 @@ class Program
 
     static void WriteNewEntry(Journal journal, PromptGenerator promptGenerator)
     {
-        
+        string prompt = promptGenerator.GetRandomPrompt();
+        Console.WriteLine(prompt);
+        Console.WriteLine("> ");
+        string response = Console.ReadLine();
+
+        Console.Write("How would you rate your mood today (1-5)? ");
+        string mood = Console.ReadLine();
+
+        string dateText = DateTime.Now.ToShortDateString();
+        Entry entry = new Entry(dateText, prompt, response, mood);
+        journal.AddEntry(entry);
+        Console.WriteLine();
     }
 
     static void SaveJournal(Journal journal)
@@ -72,5 +83,8 @@ class Program
     }
 
     static void SearchJournal(Journal journal)
+    {
+        
+    }
 
 }
