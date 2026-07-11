@@ -1,4 +1,5 @@
 using System;
+using System.Linq.Expressions;
 
 public class Entry
 {
@@ -6,4 +7,36 @@ public class Entry
     public string _promptText;
     public string _entryText;
     public string _mood;
+
+    public Entry()
+    {
+        _date = "";
+        _promptText = "";
+        _entryText = "";
+        _mood = "";        
+    }
+
+    public Entry(string date, string promptText, string entryText, string mood)
+    {
+        Console.WriteLine($"Date: {_date} - Prompt: {_promptText}");
+        Console.WriteLine($"Mood: {_mood}");
+        Console.WriteLine(_entryText);
+        Console.WriteLine();
+    }
+
+    public string GetSaveString()
+    {
+        return $"{_date}|{_promptText}|{_mood}|{_entryText}"
+    }
+    public static Entry CreateFromSaveString(string line)
+    {
+        string[] parts = line.Split("|");
+
+        if (parts.Length >= 4)
+        {
+            return new Entry(parts[0], parts[1], parts[3], parts[2]);
+        }
+
+        return new Entry();
+    }
 }
