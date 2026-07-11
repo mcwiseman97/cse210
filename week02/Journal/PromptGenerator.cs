@@ -37,5 +37,8 @@ public class PromptGenerator
             int index = _random.Next(_prompts.Count);
             prompt = _prompts[index];
         } while (prompt == _lastPrompt && _prompts.Count > 1);
+        
+        _lastPrompt = prompt;
+        return prompt;
     }
 }
