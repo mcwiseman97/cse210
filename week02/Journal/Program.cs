@@ -26,7 +26,7 @@ class Program
 
             if (choice == "1")
             {
-                WriteNewEntry(Journal, promptGenerator);
+                WriteNewEntry(journal, promptGenerator);
             }
             else if (choice == "2")
             {
