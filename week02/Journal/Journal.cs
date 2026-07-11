@@ -11,7 +11,7 @@ public class Journal
         _entries = new List<Entry>();
     }
 
-    public void addEntry(Entry newEntry)
+    public void AddEntry(Entry newEntry)
     {
         _entries.Add(newEntry);
     }
