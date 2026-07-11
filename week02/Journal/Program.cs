@@ -30,23 +30,23 @@ class Program
             }
             else if (choice == "2")
             {
-                
+                journal.DisplayAll();
             }
             else if (choice == "3")
             {
-                
+                LoadJournal(journal);
             }
             else if (choice == "4")
             {
-                
+                SaveJournal(journal);
+            }
+            else if (choice == "5")
+            {
+                SearchJournal(journal);
             }
             else if (choice == "6")
             {
-                
-            }
-            else if (choice == "6")
-            {
-                
+                Console.WriteLine("Goodbye!");
             }
             else
             {
