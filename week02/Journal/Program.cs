@@ -120,7 +120,10 @@ class Program
             }
         }
 
-        Console.WriteLine("No matching entries found.");
+        if (!found)
+        {
+            Console.WriteLine("No matching entries found.");
+        }
         Console.WriteLine();
     }
 
