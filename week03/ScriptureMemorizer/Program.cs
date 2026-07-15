@@ -32,7 +32,7 @@ class Program
 
     }
 
-    static Scripture GetRandomeScripture()
+    static Scripture GetRandomScripture()
     {
         List<Scripture> library = new List<Scripture>
         {
