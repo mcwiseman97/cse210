@@ -13,11 +13,11 @@ public class Reference
 
     public Reference(string _book, int _chapter, int _startVerse, int _endVerse)
     {
-        
+
     }
 
-    public void GetDisplayText()
+    public string GetDisplayText()
     {
-        
+        return;
     }
 }
