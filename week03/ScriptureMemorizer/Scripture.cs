@@ -15,15 +15,15 @@ public class Scripture
 
     }
 
-    public GetDisplayText()
+    public string GetDisplayText()
     {
-        
+        return "";
     }
 
     public bool IsCompletelyHidden()
     {
 
-        return bool;
+        return false;
     }
 
-}›
+}
