@@ -2,7 +2,6 @@ class Program
 {
     static void Main()
     {
-
         Scripture scripture = GetRandomScripture();
 
         while (true)
@@ -26,7 +25,6 @@ class Program
 
             scripture.HideRandomWords(3);
         }
-
     }
 
     static Scripture GetRandomScripture()

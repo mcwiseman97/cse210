@@ -21,7 +21,6 @@ public class Scripture
 
     public void HideRandomWords(int numberToHide)
     {
-        // Stretch: only select from words that are not already hidden.
         List<Word> visibleWords = new List<Word>();
 
         foreach (Word word in _words)
@@ -55,7 +54,6 @@ public class Scripture
                 scriptureText += " ";
             }
         }
-
         return $"{_reference.GetDisplayText()} {scriptureText}";
     }
 
@@ -68,8 +66,6 @@ public class Scripture
                 return false;
             }
         }
-
         return true;
     }
-
 }
