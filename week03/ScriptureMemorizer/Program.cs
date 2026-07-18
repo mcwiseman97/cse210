@@ -1,3 +1,10 @@
+/*
+ * Exceeding Requirements:
+ * 1. Hides only words that are not already hidden (stretch challenge).
+ * 2. Uses a library of scriptures and randomly chooses one each run.
+ * 3. Supports both single-verse and multi-verse references from the library.
+ */
+
 class Program
 {
     static void Main()
