@@ -1,39 +1,56 @@
-class Order {
+using System;
+using System.Collections.Generic;
 
-    // Variable declaration
-    private double _totalPrice;
-    private string _countryOrigin;
-    private List<PackingLabel> _packingLabel;
-    private List<ShippingLabel> _shippingLabel;
+class Order
+{
+    private static int _nextId = 1;
 
+    private int _id;
+    private Customer _customer;
+    private List<Product> _products;
 
-    Public Order(double totalPrice, string countryOrigin, List<PackingLabel> packingLabel, List<ShippingLabel> shippingLabel) 
+    public Order(Customer customer)
     {
-        _totalPrice = totalPrice;
-        _countryOrigin = countryOrigin;
-        _packingLabel = new List<PackingLabel>();
-        _shippingLabel = new List<ShippingLabel>();
-
+        _id = _nextId++;
+        _customer = customer;
+        _products = new List<Product>();
     }
 
-    public double GetTotalPrice() 
+    public void AddProduct(Product product)
     {
-        return _totalPrice;
+        _products.Add(product);
     }
 
-    public string GetCountryOrigin() 
+    public double GetTotalCost()
     {
-        return _countryOrigin;
+        double subtotal = 0;
+        foreach (Product product in _products)
+        {
+            subtotal += product.GetTotalCost();
+        }
+
+        double shippingCost = _customer.LivesInUSA() ? 5.0 : 35.0;
+        return subtotal + shippingCost;
     }
 
-    public List<PackingLabel> GetPackingLabel() 
+    public string GetPackingLabel()
     {
-        return _packingLabel;
+        string label = $"Packing Label\nOrder {_id}\n";
+        foreach (Product product in _products)
+        {
+            label += $"{product.GetName()} ({product.GetProductId()})\n";
+        }
+        return label;
     }
 
-    public List<ShippingLabel> GetShippingLabel() 
+    public string GetShippingLabel()
     {
-        return _shippingLabel;
+        return $"Shipping Label\n{_customer.GetName()}\n{_customer.GetAddress().GetFullAddress()}";
     }
 
+    public int GetId() => _id;
+    public Customer GetCustomer() => _customer;
+    public List<Product> GetProducts() => _products;
+    public double GetTotalAmount() => GetTotalCost();
+    public string GetCountry() => _customer.GetAddress().GetCountry();
 }

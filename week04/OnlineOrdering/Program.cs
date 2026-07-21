@@ -1,20 +1,38 @@
 using System;
+using System.Collections.Generic;
 
 class Program
 {
     static void Main(string[] args)
     {
-        List<Order> orders = new List<Order>();
+        Address address1 = new Address("123 Main St", "Provo", "UT", "USA", "84601");
+        Customer customer1 = new Customer("Ava", address1, "Standard");
+        Order order1 = new Order(customer1);
+        order1.AddProduct(new Product("Laptop", "P100", 999.99, 1));
+        order1.AddProduct(new Product("Mouse", "P101", 25.0, 2));
 
-        Order order1 = new Order(100.0, "USA", new List<PackingLabel>(), new List<ShippingLabel>());
-        Order order2 = new Order(200.0, "Canada", new List<PackingLabel>(), new List<ShippingLabel>());
-        Order order3 = new Order(300.0, "Mexico", new List<PackingLabel>(), new List<ShippingLabel>());
-        Order order4 = new Order(400.0, "USA", new List<PackingLabel>(), new List<ShippingLabel>());
+        Address address2 = new Address("456 Oak Ave", "Toronto", "ON", "Canada", "M5V 2T6");
+        Customer customer2 = new Customer("Ben", address2, "Express");
+        Order order2 = new Order(customer2);
+        order2.AddProduct(new Product("Keyboard", "P102", 79.99, 1));
 
+        Address address3 = new Address("789 Pine Rd", "Mexico City", "CMX", "Mexico", "01000");
+        Customer customer3 = new Customer("Cora", address3, "Standard");
+        Order order3 = new Order(customer3);
+        order3.AddProduct(new Product("Monitor", "P103", 199.99, 1));
 
-        orders.Add(order1);
-        orders.Add(order2);
-        orders.Add(order3);
-        orders.Add(order4);
+        List<Order> orders = new List<Order> { order1, order2, order3 };
+
+        foreach (Order order in orders)
+        {
+            Console.WriteLine($"Order ID: {order.GetId()}");
+            Console.WriteLine($"Customer: {order.GetCustomer().GetName()}");
+            Console.WriteLine($"Total Amount: {order.GetTotalAmount():C}");
+            Console.WriteLine("Packing Label:");
+            Console.WriteLine(order.GetPackingLabel());
+            Console.WriteLine("Shipping Label:");
+            Console.WriteLine(order.GetShippingLabel());
+            Console.WriteLine();
+        }
     }
 }
