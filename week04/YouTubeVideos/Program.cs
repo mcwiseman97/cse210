@@ -21,9 +21,15 @@ class Program
         video3.AddComment(new Comment("Hank", "Loved the examples."));
         video3.AddComment(new Comment("Ivy", "Subscribed!"));
 
+        Video video4 = new Video("Understanding Polymorphism", "CodeMaster", 540);
+        video4.AddComment(new Comment("Jack", "Polymorphism finally makes sense."));
+        video4.AddComment(new Comment("Kathy", "Thanks for the clear examples."));
+        video4.AddComment(new Comment("Liam", "Looking forward to the next video!"));
+
         videos.Add(video1);
         videos.Add(video2);
         videos.Add(video3);
+        videos.Add(video4);
 
         foreach (Video video in videos)
         {
