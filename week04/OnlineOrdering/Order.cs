@@ -48,10 +48,33 @@ class Order
         return $"Shipping Label\n{_customer.GetName()}\n{_customer.GetAddress().GetFullAddress()}";
     }
 
-    public int GetId() => _id;
-    public void SetCustomer(Customer customer) { _customer = customer; }
-    public Customer GetCustomer() => _customer;
-    public List<Product> GetProducts() => _products;
-    public double GetTotalAmount() => GetTotalCost();
-    public string GetCountry() => _customer.GetAddress().GetCountry();
+    public int GetId()
+    {
+        return _id;
+    }
+
+    public void SetCustomer(Customer customer)
+    {
+        _customer = customer;
+    }
+
+    public Customer GetCustomer()
+    {
+        return _customer;
+    }
+
+    public List<Product> GetProducts()
+    {
+        return _products;
+    }
+
+    public double GetTotalAmount()
+    {
+        return GetTotalCost();
+    }
+
+    public string GetCountry()
+    {
+        return _customer.GetAddress().GetCountry();
+    }
 }

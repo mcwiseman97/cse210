@@ -9,8 +9,15 @@ class PackingLabel
         _shippingAddress = shippingAddress;
     }
 
-    public string GetCustomerName() => _customerName;
-    public string GetShippingAddress() => _shippingAddress;
+    public string GetCustomerName()
+    {
+        return _customerName;
+    }
+
+    public string GetShippingAddress()
+    {
+        return _shippingAddress;
+    }
 
     public override string ToString()
     {

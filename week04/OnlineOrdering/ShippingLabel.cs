@@ -11,9 +11,20 @@ class ShippingLabel
         _country = country;
     }
 
-    public string GetCustomerName() => _customerName;
-    public string GetShippingAddress() => _shippingAddress;
-    public string GetCountry() => _country;
+    public string GetCustomerName()
+    {
+        return _customerName;
+    }
+
+    public string GetShippingAddress()
+    {
+        return _shippingAddress;
+    }
+
+    public string GetCountry()
+    {
+        return _country;
+    }
 
     public override string ToString()
     {
