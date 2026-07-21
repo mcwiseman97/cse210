@@ -11,8 +11,9 @@ class Order {
     {
         _totalPrice = totalPrice;
         _countryOrigin = countryOrigin;
-        _packingLabel = packingLabel;
-        _shippingLabel = shippingLabel;
+        _packingLabel = new List<PackingLabel>();
+        _shippingLabel = new List<ShippingLabel>();
+
     }
 
     
