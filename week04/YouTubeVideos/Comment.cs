@@ -1,7 +1,3 @@
-// _commenterName : string
-// _commentText : string
-// Comment(commenterName : string, commentText : string)
-
 class Comment
 {
     private string _commenterName;
@@ -11,5 +7,15 @@ class Comment
     {
         _commenterName = commenterName;
         _commentText = commentText;
+    }
+
+    public string GetCommenterName()
+    {
+        return _commenterName;
+    }
+
+    public string GetCommentText()
+    {
+        return _commentText;
     }
 }
