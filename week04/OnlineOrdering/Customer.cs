@@ -2,18 +2,18 @@ class Customer
 {
     private string _name;
     private Address _address;
-    private string _returnOption;
 
-    public Customer(string name, Address address, string returnOption)
+    public Customer(string name, Address address)
     {
         _name = name;
         _address = address;
-        _returnOption = returnOption;
     }
 
     public string GetName() => _name;
+    public void SetName(string name) { _name = name; }
+
     public Address GetAddress() => _address;
-    public string GetReturnOption() => _returnOption;
+    public void SetAddress(Address address) { _address = address; }
 
     public bool LivesInUSA()
     {

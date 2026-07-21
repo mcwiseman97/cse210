@@ -6,22 +6,18 @@ class Program
     static void Main(string[] args)
     {
         Address address1 = new Address("123 Main St", "Provo", "UT", "USA", "84601");
-        Customer customer1 = new Customer("Ava", address1, "Standard");
+        Customer customer1 = new Customer("Ava", address1);
         Order order1 = new Order(customer1);
         order1.AddProduct(new Product("Laptop", "P100", 999.99, 1));
         order1.AddProduct(new Product("Mouse", "P101", 25.0, 2));
 
         Address address2 = new Address("456 Oak Ave", "Toronto", "ON", "Canada", "M5V 2T6");
-        Customer customer2 = new Customer("Ben", address2, "Express");
+        Customer customer2 = new Customer("Ben", address2);
         Order order2 = new Order(customer2);
         order2.AddProduct(new Product("Keyboard", "P102", 79.99, 1));
+        order2.AddProduct(new Product("Headphones", "P104", 49.99, 2));
 
-        Address address3 = new Address("789 Pine Rd", "Mexico City", "CMX", "Mexico", "01000");
-        Customer customer3 = new Customer("Cora", address3, "Standard");
-        Order order3 = new Order(customer3);
-        order3.AddProduct(new Product("Monitor", "P103", 199.99, 1));
-
-        List<Order> orders = new List<Order> { order1, order2, order3 };
+        List<Order> orders = new List<Order> { order1, order2 };
 
         foreach (Order order in orders)
         {

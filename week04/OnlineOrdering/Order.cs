@@ -49,6 +49,7 @@ class Order
     }
 
     public int GetId() => _id;
+    public void SetCustomer(Customer customer) { _customer = customer; }
     public Customer GetCustomer() => _customer;
     public List<Product> GetProducts() => _products;
     public double GetTotalAmount() => GetTotalCost();
