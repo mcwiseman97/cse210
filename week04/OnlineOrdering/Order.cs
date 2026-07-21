@@ -16,5 +16,24 @@ class Order {
 
     }
 
-    
+    public double GetTotalPrice() 
+    {
+        return _totalPrice;
+    }
+
+    public string GetCountryOrigin() 
+    {
+        return _countryOrigin;
+    }
+
+    public List<PackingLabel> GetPackingLabel() 
+    {
+        return _packingLabel;
+    }
+
+    public List<ShippingLabel> GetShippingLabel() 
+    {
+        return _shippingLabel;
+    }
+
 }
