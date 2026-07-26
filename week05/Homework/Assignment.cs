@@ -9,7 +9,7 @@ class Assignment
         _topic = topic;
     }
 
-    public string GetAssignment()
+    public string GetSummary()
     {
         return _studentName + " : " + _topic;
     }
