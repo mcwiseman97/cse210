@@ -18,7 +18,7 @@ public class Entry
 
     public Entry(string date, string promptText, string entryText, string mood)
     {
-         _date = date;
+        _date = date;
         _promptText = promptText;
         _entryText = entryText;
         _mood = mood;           
