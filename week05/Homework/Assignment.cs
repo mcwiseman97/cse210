@@ -3,8 +3,14 @@ class Assignment
     private string _studentName;
     private string _topic;
     
-    public void GetSummary()
+    public Assignment(string studentName, string topic)
     {
-        
+        _studentName = studentName;
+        _topic = topic;
+    }
+
+    public string GetAssignment()
+    {
+        return _studentName + " : " + _topic;
     }
 }
