@@ -1,5 +1,6 @@
 using System;
 // Creative enhancement: track how many times each type of activity is completed during this session.
+
 class Program
 {
     static void Main(string[] args)
