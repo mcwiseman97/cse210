@@ -3,7 +3,7 @@ class GoalManager
     private List<Goal> _goals;
     private int _score;
 
-    public class GoalManager()
+    public GoalManager()
     {
         _goals = new List<Goal>();
         _score = 0;
@@ -13,6 +13,7 @@ class GoalManager
         // Load goals from file
         // Display menu to user
         // Handle user input
+        
     }
     public void DisplayPlayerInfo()
     {
