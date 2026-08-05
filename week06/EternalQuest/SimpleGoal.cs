@@ -7,9 +7,15 @@ class SimpleGoal : Goal
         _isComplete = false;
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
+        if (_isComplete)
+        {
+            return 0;
+        }
+
         _isComplete = true;
+        return Points;
     }
 
     public override bool IsComplete()
@@ -17,8 +23,18 @@ class SimpleGoal : Goal
         return _isComplete;
     }
 
-    public new string GetStringRepresentation()
+    public override string GetDetailsString()
     {
-        return $"{base.GetStringRepresentation()}|{_isComplete}";
+        return $"{ShortName}: {Description} ({Points} points)";
+    }
+
+    public override string GetStringRepresentation()
+    {
+        return $"Simple|{ShortName}|{Description}|{Points}|{_isComplete}";
+    }
+
+    public bool IsCompleteOverride
+    {
+        set { _isComplete = value; }
     }
 }

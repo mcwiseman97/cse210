@@ -1,19 +1,19 @@
 class Goal
 {
-    private string _shortName;
-    private string _description;
-    private int _points;
+    public string ShortName { get; }
+    protected string Description { get; }
+    protected int Points { get; }
 
     public Goal(string shortName, string description, int points)
     {
-        _shortName = shortName;
-        _description = description;
-        _points = points;
+        ShortName = shortName;
+        Description = description;
+        Points = points;
     }
 
-    public virtual void RecordEvent()
+    public virtual int RecordEvent()
     {
-        
+        return 0;
     }
 
     public virtual bool IsComplete()
@@ -23,11 +23,11 @@ class Goal
 
     public virtual string GetDetailsString()
     {
-        return $"{_shortName}: {_description} ({_points} points)";
+        return $"{ShortName}: {Description} ({Points} points)";
     }
 
     public virtual string GetStringRepresentation()
     {
-        return $"{_shortName}|{_description}|{_points}";
+        return $"Goal|{ShortName}|{Description}|{Points}";
     }
 }
