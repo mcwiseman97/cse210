@@ -21,12 +21,12 @@ class Goal
         return false;
     }
 
-    public string GetDetailsString()
+    public virtual string GetDetailsString()
     {
         return $"{_shortName}: {_description} ({_points} points)";
     }
 
-    public string GetStringRepresentation()
+    public virtual string GetStringRepresentation()
     {
         return $"{_shortName}|{_description}|{_points}";
     }

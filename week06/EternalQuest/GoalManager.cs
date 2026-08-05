@@ -14,6 +14,7 @@ class GoalManager
         // Display menu to user
         // Handle user input
         
+        
     }
     public void DisplayPlayerInfo()
     {
