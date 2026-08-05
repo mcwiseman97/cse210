@@ -7,7 +7,7 @@ class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        
+        _isComplete = true;
     }
 
     public override bool IsComplete()
@@ -15,7 +15,7 @@ class EternalGoal : Goal
         return false;
     }
 
-    public override string GetStringRepresentation()
+    public new string GetStringRepresentation()
     {
         return $"{base.GetStringRepresentation()}|Eternal";
     }

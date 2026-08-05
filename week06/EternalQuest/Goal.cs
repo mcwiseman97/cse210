@@ -11,12 +11,12 @@ class Goal
         _points = points;
     }
 
-    public void RecordEvent()
+    public virtual void RecordEvent()
     {
         
     }
 
-    public bool IsComplete()
+    public virtual bool IsComplete()
     {
         return false;
     }

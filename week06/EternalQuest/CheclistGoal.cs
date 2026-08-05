@@ -21,12 +21,12 @@ class ChecklistGoal : Goal
         return _amountCompleted >= _target;
     }
 
-    public override string GetStringRepresentation()
+    public new string GetStringRepresentation()
     {
         return $"{base.GetStringRepresentation()}|{_amountCompleted}|{_target}|{_bonus}";
     }
 
-    public override string GetDetailsString()
+    public new string GetDetailsString()
     {
         return $"{base.GetDetailsString()} - Completed: {_amountCompleted}/{_target} (Bonus: {_bonus} points)";
     }
