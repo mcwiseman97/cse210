@@ -2,18 +2,16 @@ class Circle : Shape
 {
     private double _radius;
 
-    public Circle(string color, double radius) : base(color)
+    public Circle(string color, double radius) : base (color)
     {
         _radius = radius;
     }
 
-    public double GetRadius()
+    public override double GetArea()
     {
-        return _radius;
-    }
-
-    public void SetRadius(double radius)
-    {
-        _radius = radius;
+        return _radius * _radius * Math.PI;
     }
 }
+
+
+
