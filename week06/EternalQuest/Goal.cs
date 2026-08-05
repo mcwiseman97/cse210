@@ -26,7 +26,7 @@ class Goal
         return $"{_shortName}: {_description} ({_points} points)";
     }
 
-    public string GetStringRepresntation()
+    public string GetStringRepresentation()
     {
         return $"{_shortName}|{_description}|{_points}";
     }
