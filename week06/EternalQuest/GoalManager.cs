@@ -6,11 +6,12 @@ class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
     private int _score = 0;
-    private string _file = Path.Combine(AppContext.BaseDirectory, "goals.txt");
+    private string _file = "goals.txt";
 
     public void Start()
     {
         LoadGoals();
+
         while (true)
         {
             Console.WriteLine("1. List Goals");
@@ -21,21 +22,44 @@ class GoalManager
             Console.WriteLine("6. Display Info");
             Console.WriteLine("7. Exit");
             Console.Write("Choose an option: ");
-            var command = Console.ReadLine();
-            if (command == "1") ListGoals();
-            else if (command == "2") CreateGoal();
-            else if (command == "3") RecordEvent();
-            else if (command == "4") SaveGoals();
-            else if (command == "5") LoadGoals();
-            else if (command == "6") DisplayInfo();
-            else if (command == "7") { SaveGoals(); break; }
+            string command = Console.ReadLine();
+
+            if (command == "1")
+            {
+                ListGoals();
+            }
+            else if (command == "2")
+            {
+                CreateGoal();
+            }
+            else if (command == "3")
+            {
+                RecordEvent();
+            }
+            else if (command == "4")
+            {
+                SaveGoals();
+            }
+            else if (command == "5")
+            {
+                LoadGoals();
+            }
+            else if (command == "6")
+            {
+                DisplayInfo();
+            }
+            else if (command == "7")
+            {
+                SaveGoals();
+                break;
+            }
         }
     }
 
     public void DisplayInfo()
     {
-        Console.WriteLine($"Score: {_score}");
-        Console.WriteLine($"Goals: {_goals.Count}");
+        Console.WriteLine("Score: " + _score);
+        Console.WriteLine("Goals: " + _goals.Count);
     }
 
     public void ListGoals()
@@ -45,27 +69,66 @@ class GoalManager
             Console.WriteLine("No goals.");
             return;
         }
+
         for (int i = 0; i < _goals.Count; i++)
         {
-            var goal = _goals[i];
-            var mark = goal.IsComplete() ? "[X]" : "[ ]";
-            Console.WriteLine($"{i+1}. {mark} {goal.GetDetailsString()}");
+            Goal goal = _goals[i];
+            string mark = "[ ]";
+
+            if (goal.IsComplete())
+            {
+                mark = "[X]";
+            }
+
+            Console.WriteLine((i + 1) + ". " + mark + " " + goal.GetDetailsString());
         }
     }
 
     public void CreateGoal()
     {
-        Console.WriteLine("type: 1=Simple 2=Eternal 3=Checklist");
-        var typeInput = Console.ReadLine();
-        Console.Write("name: "); var name = Console.ReadLine() ?? "";
-        Console.Write("desc: "); var description = Console.ReadLine() ?? "";
-        Console.Write("points: "); var points = int.TryParse(Console.ReadLine(), out var parsedPoints) ? parsedPoints : 0;
-        if (typeInput == "1") _goals.Add(new SimpleGoal(name, description, points));
-        else if (typeInput == "2") _goals.Add(new EternalGoal(name, description, points));
+        Console.WriteLine("Type: 1=Simple 2=Eternal 3=Checklist");
+        string typeInput = Console.ReadLine();
+
+        Console.Write("name: ");
+        string name = Console.ReadLine() ?? "";
+
+        Console.Write("desc: ");
+        string description = Console.ReadLine() ?? "";
+
+        Console.Write("points: ");
+        string pointsInput = Console.ReadLine();
+        int points;
+        if (!int.TryParse(pointsInput, out points))
+        {
+            points = 0;
+        }
+
+        if (typeInput == "1")
+        {
+            _goals.Add(new SimpleGoal(name, description, points));
+        }
+        else if (typeInput == "2")
+        {
+            _goals.Add(new EternalGoal(name, description, points));
+        }
         else if (typeInput == "3")
         {
-            Console.Write("target: "); var target = int.TryParse(Console.ReadLine(), out var parsedTarget) ? parsedTarget : 1;
-            Console.Write("bonus: "); var bonus = int.TryParse(Console.ReadLine(), out var parsedBonus) ? parsedBonus : 0;
+            Console.Write("target: ");
+            string targetInput = Console.ReadLine();
+            int target;
+            if (!int.TryParse(targetInput, out target))
+            {
+                target = 1;
+            }
+
+            Console.Write("bonus: ");
+            string bonusInput = Console.ReadLine();
+            int bonus;
+            if (!int.TryParse(bonusInput, out bonus))
+            {
+                bonus = 0;
+            }
+
             _goals.Add(new ChecklistGoal(name, description, points, target, bonus));
         }
     }
@@ -73,49 +136,127 @@ class GoalManager
     public void RecordEvent()
     {
         ListGoals();
+
         Console.Write("which: ");
-        var success = int.TryParse(Console.ReadLine(), out var parsedIndex);
-        if (!success || parsedIndex < 1 || parsedIndex > _goals.Count) return;
-        var selectedGoal = _goals[parsedIndex - 1];
-        var awardedPoints = selectedGoal.RecordEvent();
-        _score += awardedPoints;
+        string which = Console.ReadLine();
+        int index;
+        if (!int.TryParse(which, out index))
+        {
+            return;
+        }
+
+        if (index < 1 || index > _goals.Count)
+        {
+            return;
+        }
+
+        Goal selectedGoal = _goals[index - 1];
+        int awardedPoints = selectedGoal.RecordEvent();
+        _score = _score + awardedPoints;
     }
 
     public void SaveGoals()
     {
-        var lines = new List<string> { $"Score|{_score}" };
-        foreach (var goal in _goals) lines.Add(goal.GetStringRepresentation());
+        List<string> lines = new List<string>();
+        lines.Add("Score|" + _score);
+
+        for (int i = 0; i < _goals.Count; i++)
+        {
+            lines.Add(_goals[i].GetStringRepresentation());
+        }
+
         File.WriteAllLines(_file, lines);
     }
 
     public void LoadGoals()
     {
-        if (!File.Exists(_file)) return;
-        _goals.Clear(); _score = 0;
-        foreach (var line in File.ReadAllLines(_file))
+        if (!File.Exists(_file))
         {
-            var parts = line.Split('|');
-            if (parts.Length == 0) continue;
-            if (parts[0] == "Score") { _score = int.TryParse(parts[1], out var savedScore) ? savedScore : 0; continue; }
+            return;
+        }
+
+        _goals.Clear();
+        _score = 0;
+
+        string[] lines = File.ReadAllLines(_file);
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            string line = lines[i];
+            string[] parts = line.Split('|');
+
+            if (parts.Length == 0)
+            {
+                continue;
+            }
+
+            if (parts[0] == "Score")
+            {
+                int savedScore;
+                if (parts.Length >= 2 && int.TryParse(parts[1], out savedScore))
+                {
+                    _score = savedScore;
+                }
+
+                continue;
+            }
+
             if (parts[0] == "Simple" && parts.Length >= 5)
             {
-                var simplePoints = int.TryParse(parts[3], out var parsedSimplePoints) ? parsedSimplePoints : 0;
-                var simpleGoal = new SimpleGoal(parts[1], parts[2], simplePoints);
-                if (bool.TryParse(parts[4], out var isCompleteParsed)) simpleGoal.IsCompleteOverride = isCompleteParsed;
+                int simplePoints;
+                if (!int.TryParse(parts[3], out simplePoints))
+                {
+                    simplePoints = 0;
+                }
+
+                SimpleGoal simpleGoal = new SimpleGoal(parts[1], parts[2], simplePoints);
+
+                bool isComplete;
+                if (bool.TryParse(parts[4], out isComplete))
+                {
+                    simpleGoal.IsCompleteOverride = isComplete;
+                }
+
                 _goals.Add(simpleGoal);
             }
             else if (parts[0] == "Eternal" && parts.Length >= 4)
             {
-                var eternalPoints = int.TryParse(parts[3], out var parsedEternalPoints) ? parsedEternalPoints : 0;
+                int eternalPoints;
+                if (!int.TryParse(parts[3], out eternalPoints))
+                {
+                    eternalPoints = 0;
+                }
+
                 _goals.Add(new EternalGoal(parts[1], parts[2], eternalPoints));
             }
             else if (parts[0] == "Checklist" && parts.Length >= 7)
             {
-                var checklistPoints = int.TryParse(parts[3], out var parsedChecklistPoints) ? parsedChecklistPoints : 0;
-                var checklistTarget = int.TryParse(parts[5], out var parsedChecklistTarget) ? parsedChecklistTarget : 1;
-                var checklistBonus = int.TryParse(parts[6], out var parsedChecklistBonus) ? parsedChecklistBonus : 0;
-                var checklistGoal = new ChecklistGoal(parts[1], parts[2], checklistPoints, checklistTarget, checklistBonus);
-                if (int.TryParse(parts[4], out var amountCompletedParsed)) checklistGoal.AmountCompleted = amountCompletedParsed;
+                int checklistPoints;
+                if (!int.TryParse(parts[3], out checklistPoints))
+                {
+                    checklistPoints = 0;
+                }
+
+                int checklistCompleted;
+                if (!int.TryParse(parts[4], out checklistCompleted))
+                {
+                    checklistCompleted = 0;
+                }
+
+                int checklistTarget;
+                if (!int.TryParse(parts[5], out checklistTarget))
+                {
+                    checklistTarget = 1;
+                }
+
+                int checklistBonus;
+                if (!int.TryParse(parts[6], out checklistBonus))
+                {
+                    checklistBonus = 0;
+                }
+
+                ChecklistGoal checklistGoal = new ChecklistGoal(parts[1], parts[2], checklistPoints, checklistTarget, checklistBonus);
+                checklistGoal.AmountCompleted = checklistCompleted;
                 _goals.Add(checklistGoal);
             }
         }

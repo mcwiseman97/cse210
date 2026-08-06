@@ -30,4 +30,4 @@ class Goal
     {
         return $"Goal|{ShortName}|{Description}|{Points}";
     }
-}
+} 
